@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchProjects } from '../../Action/action'
 import ProjectsCard from './ProjectsCard'
+import ProjectsForm from './ProjectsForm'
 
 const ProjectsContainer = (props) => {
   const { fetchProjects, projects } = props
@@ -14,6 +15,7 @@ const ProjectsContainer = (props) => {
   console.log('Component ProjectsContainer --> ', projects)
   return (
     <div>
+      <ProjectsForm />
       {projects.map(project => {
         return (
           <Link to={`/actions/${project.id}/projects`}>

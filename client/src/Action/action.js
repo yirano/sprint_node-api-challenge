@@ -24,3 +24,14 @@ export const fetchActions = (id) => dispatch => {
     })
     .catch(err => console.log(err))
 }
+
+export const postProject = (project) => dispatch => {
+  axios.post(`${API}/projects`, project)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: POST_PROJECT, payload: res.data.data })
+    })
+    .catch(err => {
+      console.log(err.response)
+    })
+}

@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
       console.log('Reducer Fetch Project --> ', action.payload)
       return { projects: action.payload }
     case FETCH_ACTIONS:
-      return { actions: action.payload }
+      return { ...state, actions: action.payload }
     case POST_PROJECT:
       return { state }
     default:

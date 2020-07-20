@@ -18,9 +18,9 @@ export const fetchProjects = () => dispatch => {
 
 export const fetchActions = (id) => dispatch => {
   axios.get(`${API}/actions/${id}/projects`)
-    .then(res=> {
+    .then(res => {
       console.log('Action Fetch Actions --> ', res.data.data)
-      dispatch({type:FETCH_ACTIONS, payload: res.data})
+      dispatch({ type: FETCH_ACTIONS, payload: res.data.data })
     })
-    .catch(err=>console.log(err))
+    .catch(err => console.log(err))
 }

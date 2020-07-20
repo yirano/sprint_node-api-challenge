@@ -1,20 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
-import styled from 'styled-components'
-
-const StyledProjectCard = styled.div`
-  border: 1px solid gray;
-  padding: 2%;
-  min-width: 200px;
-  border-radius: 10px;
-  margin-top: 20px;
-`
-
-const StyledProjectContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-`
+import { StyledCard, StyledContainer } from '../../StyledComponents'
 
 const ProjectRender = () => {
 
@@ -32,17 +18,17 @@ const ProjectRender = () => {
   }, [])
 
   return (
-    <StyledProjectContainer>
+    <StyledContainer>
       {projData.map(proj => {
         return (
-          <StyledProjectCard>
+          <StyledCard>
             <h3>Project</h3>
             <p>{proj.description}</p>
             <p>{proj.notes}</p>
-          </StyledProjectCard>
+          </StyledCard>
         )
       })}
-    </StyledProjectContainer>
+    </StyledContainer>
   )
 }
 

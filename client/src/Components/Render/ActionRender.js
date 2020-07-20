@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
-import styled from 'styled-components'
+import { StyledCard, StyledContainer } from '../../StyledComponents'
 
-const StyledProjectCard = styled.div`
-  border: 1px solid green;
-  padding: 2%;
-  min-width: 200px;
-  border-radius: 10px;
-  margin-top: 20px;
-`
 
-const StyledProjectContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-`
 
 const ActionRender = () => {
 
@@ -31,18 +19,22 @@ const ActionRender = () => {
       })
   }, [])
 
+  const handleClick = id => {
+    console.log(id)
+  }
+
   return (
-    <StyledProjectContainer>
+    <StyledContainer>
       {actionData.map(action => {
         return (
-          <StyledProjectCard onClick={console.log(action.id)}>
+          <StyledCard onClick={() => handleClick(action.id)}>
             <h3>Action</h3>
             <p>{action.description}</p>
             <p>{action.notes}</p>
-          </StyledProjectCard>
+          </StyledCard>
         )
       })}
-    </StyledProjectContainer>
+    </StyledContainer>
   )
 }
 

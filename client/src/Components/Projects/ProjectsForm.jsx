@@ -16,7 +16,7 @@ const ProjectsForm = (props) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     postProject(form)
   }
 

@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Project = require('../data/helpers/projectModel')
+const { validateProjectBody } = require('../middlewares')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -49,20 +50,5 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-function validateProjectBody() {
-  // name and description required
-  return (req, res, next) => {
-    try {
-      if (!req.body.name || !req.body.description) {
-        res.status(400).json({ message: "Please fill out the required fields." })
-      } else {
-        body = req.body
-        next()
-      }
-    } catch (error) {
-      next(error)
-    }
-  }
-}
 
 module.exports = router

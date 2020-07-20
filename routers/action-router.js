@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Action = require('../data/helpers/actionModel')
+const { validateActionBody } = require('../middlewares')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -33,7 +34,7 @@ router.post('/', validateActionBody(), async (req, res, next) => {
 
 router.put('/:id', validateActionBody(), async (req, res, next) => {
   try {
-    const { body } = req
+    // const { body } = req
     const { id } = req.params
     const editPost = await Action.update(id, body)
     res.status(201).json({ data: editPost })
@@ -52,19 +53,5 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-function validateActionBody() {
-  return (req, res, next) => {
-    try {
-      if (!req.body.description || !req.body.notes) {
-        res.status(400).json({ message: "Please fill out the required fields" })
-      } else {
-        body = req.body
-        next()
-      }
-    } catch (error) {
-      next(error)
-    }
-  }
-}
 
 module.exports = router

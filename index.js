@@ -17,10 +17,12 @@ const express = require('express')
 const cors = require('cors')
 const actionRouter = require('./routers/action-router')
 const projectRouter = require('./routers/project-router')
+const { json } = require('express')
 
 const server = express()
 const PORT = process.env.PORT || 4000
 
+server.use(json())
 server.use('/api/actions', actionRouter)
 server.use('/api/projects', projectRouter)
 

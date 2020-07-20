@@ -46,4 +46,15 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const deletePost = await Action.remove(id)
+    res.status(200).json({ data: deletePost })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
 module.exports = router

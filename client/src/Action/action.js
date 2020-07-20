@@ -8,10 +8,19 @@ export const POST_PROJECT = 'POST_PROJECT'
 export const fetchProjects = () => dispatch => {
   axios.get(`${API}/projects`)
     .then(res => {
-      console.log('Action Fetch Project --> ', res.data)
+      console.log('Action Fetch Project --> ', res.data.data)
       dispatch({ type: FETCH_PROJECTS, payload: res.data.data })
     })
     .catch(err => {
       console.log(err)
     })
+}
+
+export const fetchActions = (id) => dispatch => {
+  axios.get(`${API}/actions/${id}/projects`)
+    .then(res=> {
+      console.log('Action Fetch Actions --> ', res.data.data)
+      dispatch({type:FETCH_ACTIONS, payload: res.data})
+    })
+    .catch(err=>console.log(err))
 }

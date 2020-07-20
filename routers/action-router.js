@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Action = require('../data/helpers/actionModel')
+const Project = require('../data/helpers/projectModel')
 const { validateActionBody } = require('../middlewares')
 
 router.get('/', async (req, res, next) => {
@@ -17,6 +18,16 @@ router.get('/:id', async (req, res, next) => {
     const action = await Action.get(id)
     res.status(200).json({ data: action })
   } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:id/projects', async (req, res, next) => {
+  try {
+    const project = await Project.getProjectActions(req.params.id)
+    res.status(200).json({ data: project })
+  } catch (error) {
+    console.log(error)
     next(error)
   }
 })

@@ -1,11 +1,10 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import ProjectForm from './Components/Forms/Project'
 
 function App() {
   return (
     <div className="App">
-      <h1>APP</h1>
+      <ProjectForm />
     </div>
   )
 }

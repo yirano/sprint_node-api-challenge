@@ -1,26 +1,33 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchProjects } from '../../Action/action'
+import { fetchProjects, removeProject } from '../../Action/action'
 import ProjectsCard from './ProjectsCard'
 import ProjectsForm from './ProjectsForm'
 
 const ProjectsContainer = (props) => {
-  const { fetchProjects, projects } = props
+  const { fetchProjects, removeProject, projects } = props
 
   useEffect(() => {
     fetchProjects()
   }, [])
 
+  const handleDelete = (id) => {
+    console.log(id)
+    removeProject(id)
+  }
   console.log('Component ProjectsContainer --> ', projects)
   return (
     <div>
       <ProjectsForm />
       {projects.map(project => {
         return (
-          <Link to={`/actions/${project.id}/projects`}>
-            <ProjectsCard project={project} />
-          </Link>
+          <>
+            <Link to={`/actions/${project.id}/projects`}>
+              <ProjectsCard project={project} />
+            </Link>
+            <button onClick={() => handleDelete(project.id)}>Delete</button>
+          </>
         )
       }
       )}
@@ -33,4 +40,4 @@ const mapStateToProps = state => {
     projects: state.projects
   }
 }
-export default connect(mapStateToProps, { fetchProjects })(ProjectsContainer)
+export default connect(mapStateToProps, { fetchProjects, removeProject })(ProjectsContainer)

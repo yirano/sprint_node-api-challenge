@@ -30,8 +30,20 @@ export const postProject = (project) => dispatch => {
     .then(res => {
       console.log(res)
       dispatch({ type: POST_PROJECT, payload: res.data.data })
+      window.location.reload()
     })
     .catch(err => {
       console.log(err.response)
+    })
+}
+
+export const removeProject = (id) => dispatch => {
+  axios.delete(`${API}/projects/${id}`)
+    .then(res => {
+      console.log(res)
+      window.location.reload()
+    })
+    .catch(err => {
+      console.log(err)
     })
 }

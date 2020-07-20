@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case FETCH_ACTIONS:
       return { ...state, actions: action.payload }
     case POST_PROJECT:
-      return { state }
+      return { ...state }
     default:
       return state
   }

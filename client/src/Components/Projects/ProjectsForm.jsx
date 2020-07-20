@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { postProject } from '../../Action/action'
 
@@ -8,6 +9,7 @@ const initialForm = {
 }
 
 const ProjectsForm = (props) => {
+  const history = useHistory()
   const { postProject } = props
   const [form, setForm] = useState(initialForm)
 
@@ -18,6 +20,7 @@ const ProjectsForm = (props) => {
 
   const handleSubmit = () => {
     postProject(form)
+    props.history.push('/')
   }
 
   return (
@@ -29,10 +32,4 @@ const ProjectsForm = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    prop: state.projects
-  }
-}
-
-export default connect(mapStateToProps, { postProject })(ProjectsForm)
+export default connect(null, { postProject })(ProjectsForm)

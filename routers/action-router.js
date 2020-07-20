@@ -22,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', validateActionBody(), async (req, res, next) => {
   // project_id, description, notes = required
   try {
     const { body } = req
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', validateActionBody(), async (req, res, next) => {
   try {
     const { body } = req
     const { id } = req.params
@@ -56,5 +56,21 @@ router.delete('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+function validateActionBody() {
+  return (req, res, next) => {
+    try {
+      if (!req.body.description) {
+        res.status(400).json({ message: "Please fill out the required fields" })
+      } else {
+        body = req.body
+        next()
+      }
+    } catch (error) {
+      console.log(error)
+      next(error)
+    }
+  }
+}
 
 module.exports = router

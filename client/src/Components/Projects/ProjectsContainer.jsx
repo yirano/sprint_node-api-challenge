@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 import { fetchProjects } from '../../Action/action'
 import ProjectsCard from './ProjectsCard'
 
@@ -12,8 +13,12 @@ const ProjectsContainer = (props) => {
   return (
     <div>
       {projects.map(project => {
-        return <ProjectsCard project={project} />
-      })}
+        return (
+          <Link to={`/actions/${project.id}/projects`}>
+            <ProjectsCard project={project} />
+          </Link>
+        )}
+      )}
     </div>
   )
 }

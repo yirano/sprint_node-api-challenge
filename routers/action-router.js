@@ -6,7 +6,6 @@ router.get('/', async (req, res, next) => {
     const actions = await Action.get()
     res.status(200).json({ data: actions })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 })
@@ -17,7 +16,6 @@ router.get('/:id', async (req, res, next) => {
     const action = await Action.get(id)
     res.status(200).json({ data: action })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 })
@@ -29,7 +27,6 @@ router.post('/', validateActionBody(), async (req, res, next) => {
     const newPost = await Action.insert(body)
     res.status(201).json({ data: newPost })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 })
@@ -41,7 +38,6 @@ router.put('/:id', validateActionBody(), async (req, res, next) => {
     const editPost = await Action.update(id, body)
     res.status(201).json({ data: editPost })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 })
@@ -52,7 +48,6 @@ router.delete('/:id', async (req, res, next) => {
     const deletePost = await Action.remove(id)
     res.status(200).json({ data: deletePost })
   } catch (error) {
-    console.log(error)
     next(error)
   }
 })
@@ -60,14 +55,13 @@ router.delete('/:id', async (req, res, next) => {
 function validateActionBody() {
   return (req, res, next) => {
     try {
-      if (!req.body.description) {
+      if (!req.body.description || !req.body.notes) {
         res.status(400).json({ message: "Please fill out the required fields" })
       } else {
         body = req.body
         next()
       }
     } catch (error) {
-      console.log(error)
       next(error)
     }
   }

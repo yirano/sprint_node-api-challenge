@@ -4,6 +4,7 @@ import API from '../API/api'
 export const FETCH_PROJECTS = 'FETCH_PROJECTS'
 export const FETCH_ACTIONS = 'FETCH_ACTIONS'
 export const POST_PROJECT = 'POST_PROJECT'
+export const POST_ACTION = 'POST_ACTION'
 
 export const fetchProjects = () => dispatch => {
   axios.get(`${API}/projects`)
@@ -45,5 +46,13 @@ export const removeProject = (id) => dispatch => {
     })
     .catch(err => {
       console.log(err)
+    })
+}
+
+export const postAction = action => dispatch => {
+  axios.post(`${API}/actions`, action)
+    .then(res => {
+      dispatch({ type: POST_ACTION, payload: res.data.data })
+      window.location.reload()
     })
 }

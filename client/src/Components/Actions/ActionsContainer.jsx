@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchActions } from '../../Action/action'
 import ActionsCard from './ActionsCard'
+import ActionsForm from './ActionsForm'
 
 const ActionsContainer = (props) => {
   const { fetchActions, actions } = props
@@ -14,6 +15,7 @@ const ActionsContainer = (props) => {
   console.log('Component ActionsContainer --> ', actions)
   return (
     <div>
+      <ActionsForm />
       {actions.map(action => <ActionsCard action={action} />)}
     </div>
   )

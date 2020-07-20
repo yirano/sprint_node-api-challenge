@@ -3,13 +3,13 @@ import Axios from 'axios'
 import { StyledCard, StyledContainer } from '../../StyledComponents'
 
 
-
+const API = 'https://cors-anywhere.herokuapp.com/https://sprint-node-api.herokuapp.com'
 const ActionRender = () => {
 
   const [actionData, setActionData] = useState([])
 
   useEffect(() => {
-    Axios.get('https://cors-anywhere.herokuapp.com/https://sprint-node-api.herokuapp.com/api/actions')
+    Axios.get(`${API}/api/actions`)
       .then(res => {
         console.log(res.data.data)
         setActionData(res.data.data)

@@ -22,21 +22,30 @@ const StyledLink = styled.div`
   }
 `
 
+const Container = styled.div`
+  margin: 0 auto;
+  text-align: center;
+`
+
 function App() {
+  console.log('HI', `${process.env.REACT_APP_API}`)
+
   return (
     <Router>
-      <StyledLink>
-        <Link to="/projects">Projects</Link>
-        <Link to="/actions">Actions</Link>
-      </StyledLink>
-      <ProjectForm />
-      <ActionForm />
-      <Switch>
-        <Route path="/projects" component={ProjectRender} />
-        <Route path="/actions" component={ActionRender} />
-        {/* <ProjectRender /> */}
-        {/* <ActionRender /> */}
-      </Switch>
+      <Container>
+        <StyledLink>
+          <Link to="/">Projects</Link>
+          <Link to="/actions">Actions</Link>
+        </StyledLink>
+        <ProjectForm />
+        <ActionForm />
+        <Switch>
+          <Route exact path="/" component={ProjectRender} />
+          <Route path="/actions" component={ActionRender} />
+          {/* <ProjectRender /> */}
+          {/* <ActionRender /> */}
+        </Switch>
+      </Container>
     </Router>
   )
 }

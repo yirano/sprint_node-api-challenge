@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import ActionForm from '../Forms/ActionForm'
 
 
 const Action = () => {
@@ -12,7 +13,7 @@ const Action = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    Axios.post('https://cors-anywhere.herokuapp.com/https://sprint-node-api.herokuapp.com/api/actions', action)
+    Axios.post(`${process.env.REACT_APP_API}/api/actions`, action)
       .then(res => {
         console.log(res.data)
       })
@@ -21,13 +22,18 @@ const Action = () => {
       })
   }
 
+
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h4>Action Form</h4>
-      <input type="text" name="description" placeholder="Action Description" onChange={handleChange} />
-      <input type="text" name="notes" placeholder="Action Notes" onChange={handleChange} />
-      <input type="submit" />
-    </form>
+    <>
+      {/* <ActionForm /> */}
+      <form onSubmit={handleSubmit}>
+        <h4>Action Form</h4>
+        <input type="text" name="description" placeholder="Action Description" onChange={handleChange} />
+        <input type="text" name="notes" placeholder="Action Notes" onChange={handleChange} />
+        <input type="submit" />
+      </form>
+    </>
   )
 }
 

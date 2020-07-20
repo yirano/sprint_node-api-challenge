@@ -17,11 +17,15 @@ const ProjectRender = () => {
       })
   }, [])
 
+  const handleClick = id => {
+    console.log(id)
+  }
+
   return (
     <StyledContainer>
       {projData.map(proj => {
         return (
-          <StyledCard>
+          <StyledCard onClick={() => handleClick(proj.id)}>
             <h3>Project</h3>
             <p>{proj.description}</p>
             <p>{proj.notes}</p>

@@ -34,4 +34,16 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const { body } = req
+    const { id } = req.params
+    const editPost = await Action.update(id, body)
+    res.status(201).json({ data: editPost })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
 module.exports = router

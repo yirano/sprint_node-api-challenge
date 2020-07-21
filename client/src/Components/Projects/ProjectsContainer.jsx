@@ -26,6 +26,9 @@ const ProjectsContainer = (props) => {
             <Link to={`/actions/${project.id}/projects`}>
               <ProjectsCard project={project} />
             </Link>
+            <Link to={`/projects/${project.id}/edit`}>
+              <button>Edit</button>
+            </Link>
             <button onClick={() => handleDelete(project.id)}>Delete</button>
           </>
         )

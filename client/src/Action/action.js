@@ -38,6 +38,16 @@ export const postProject = (project) => dispatch => {
     })
 }
 
+export const editProject = (project, id) => dispatch => {
+  axios.put(`${API}/projects/${id}`)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const removeProject = (id) => dispatch => {
   axios.delete(`${API}/projects/${id}`)
     .then(res => {
